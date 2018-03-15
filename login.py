@@ -8,7 +8,9 @@ from 课表查询 import KbCx
 from 考试信息查询 import Ksxxcx
 import time
 import re
-
+'''
+此文件为登录并获取cookie用于后续网站访问
+'''
 
 class Login:
     def __init__(self):
