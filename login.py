@@ -6,11 +6,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 from 空教室查询 import KxCdCx
 from 课表查询 import KbCx
 from 考试信息查询 import Ksxxcx
+from 个人成绩查询 import StuScore
 import time
 import re
-'''
-此文件为登录并获取cookie用于后续网站访问
-'''
+
 
 class Login:
     def __init__(self):
@@ -25,11 +24,11 @@ class Login:
             brower.get('http://sfrz.cug.edu.cn/tpass/login?service=http%3A%2F%2Fxyfw.cug.edu.cn%2Ftp_up%2Fview%3Fm%3Dup')
             inputun = brower.find_element_by_id('un')
             inputun.send_keys(username)
-            time.sleep(2)
+            time.sleep(1)
             inputun = brower.find_element_by_id('pd')
             inputun.send_keys(password)
             inputun.send_keys(Keys.ENTER)
-            wait = WebDriverWait(brower, 10)
+            wait = WebDriverWait(brower, 20)
             wait.until(EC.element_to_be_clickable((By.ID, 'app_a')))
             html = brower.page_source
             appurl = re.findall('appurl="(.*?)"', html, re.S)
@@ -58,10 +57,11 @@ if __name__ == '__main__':
         ClassScdSearch = KbCx()  # 课表查询
         ClassRoomSearch = KxCdCx()  # 空闲教室查询
         ExamMsgSearch = Ksxxcx()  # 考试信息查询
+        StuScore = StuScore(headers)  # 个人成绩查询
         quit_code = 1
         while quit_code != 0:
             print('\n'+'*******************************')
-            print('1.查询个人课表', '2.查询空闲教室', '3.查询考试信息', '4.退出', sep='\n')
+            print('1.查询个人课表', '2.查询空闲教室', '3.查询考试信息', '4.查询个人成绩', '5.退出', sep='\n')
             print('*******************************'+'\n')
             user_input = int(input('请输入:'))
             print('\n')
@@ -72,6 +72,8 @@ if __name__ == '__main__':
             elif user_input == 3:
                 ExamMsgSearch.ksxxcx(headers)
             elif user_input == 4:
+                 StuScore.stu_score()
+            elif user_input == 5:
                 print('欢迎下次使用，再见(*╹▽╹*)')
                 quit_code = 0
                 zong_code = 0
