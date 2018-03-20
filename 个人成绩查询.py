@@ -55,11 +55,11 @@ class StuScore:
                 bbdata = [juti[n].strip('【】'), juti[n+1].strip('&nbsp;'), juti[n+2].strip('&nbsp;')]
                 pt.add_row(bbdata)
 
-            with open(score_path+'./{}学年第{}学期成绩详细.txt'.format(xnm, xqm), 'a', encoding='utf-8') as f:
+            with open(score_path+'/{}学年第{}学期成绩详细.txt'.format(xnm, xqm), 'a', encoding='utf-8') as f:
                 f.write('\n'+a['kcmc']+'\n'+str(pt))
 
         print('查询成功')
-        excel.save(score_path+'./{}学年第{}学期成绩信息查询结果.xls'.format(xnm, xqm))
+        excel.save(score_path+'/{}学年第{}学期成绩信息查询结果.xls'.format(xnm, xqm))
 
     def get_specific_score(self, xh_id, jxb_id, xnm, xqm, kcmc):
         data = {
