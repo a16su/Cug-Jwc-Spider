@@ -41,11 +41,11 @@ class KxCdCx:
 
         }
         # 周次的id构建 比如2,3,4周 则post为 2**1+2**2+2**3，节次的构建同理。星期几的构建搞不出来，所以采用只能查询单天的方式
-        zcd = list(map((lambda x: int(x)), (list(input('请输入周次（若多周用‘，’分割）:').split(',')[:]))))
-        zcd_id = sum(list(map((lambda x: 2 ** (x - 1)), list(zcd))))
+        zcd = [int(x) for x in input('请输入周次（若多周用‘，’分割）:').split(',')]
+        zcd_id = sum([2**(x-1) for x in zcd])
         xqj = input('请输入星期几(目前不能同时查询多天):')
-        jcd = list(map((lambda x: int(x)), (list(input('请输入节次（若多节用‘，’分割）:').split(',')[:]))))
-        jcd_id = sum(list(map((lambda x: 2 ** (int(x) - 1)), list(jcd))))
+        jcd = [int(x) for x in input('请输入周次（若多周用‘，’分割）:').split(',')]
+        jcd_id = sum([2**(x-1) for x in jcd])
         data['zcd'] = zcd_id
         data['xqj'] = xqj
         data['jcd'] = jcd_id
